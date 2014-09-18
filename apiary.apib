@@ -106,24 +106,34 @@ of data.
 + Response 200
 
 ## Assets and Services Member [/AssetsServices/{assetHash}]
-
 ### Read [GET]
++ Parameters
+    + assetHash (required, string, `eccbc87e4b5ce2fe28308fd9f2a7baf3`)
+
 
 + Response 200 (application/json)
         [AssetArray][]
 
 ### Delete [DELETE]
++ Parameters
+    + assetHash (required, string, `eccbc87e4b5ce2fe28308fd9f2a7baf3`)
 
 + Response 200
 
 ## Assets and Services Member [/AssetsServices/{assetHash}/{serviceToken}]
 ### Read [GET]
++ Parameters
+    + assetHash (required, string, `eccbc87e4b5ce2fe28308fd9f2a7baf3`)
+    + serviceToken (required, string, `SILVERSTACK`)
 
 + Response 200 (application/json)
         [Asset][]
 
 
 ### Update [PUT]
++ Parameters
+    + assetHash (required, string, `eccbc87e4b5ce2fe28308fd9f2a7baf3`)
+    + serviceToken (required, string, `SILVERSTACK`)
 
 + Request
     
@@ -134,6 +144,9 @@ of data.
 + Response 200
 
 ### Delete [DELETE]
++ Parameters
+    + assetHash (required, string, `eccbc87e4b5ce2fe28308fd9f2a7baf3`)
+    + serviceToken (required, string, `SILVERSTACK`)
 
 + Response 200
 
@@ -166,11 +179,15 @@ To register a service type, provide the human-readable name for the service, a t
 
 ## Service Registry Member [/ServiceRegistry/{serviceToken}]
 ### Read [GET]
++ Parameters
+    + serviceToken (required, string, `SILVERSTACK`)
 
 + Response 200 (application/json)
         [Service][]
 
 ### Update [PUT]
++ Parameters
+    + serviceToken (required, string, `SILVERSTACK`)
 
 + Request
     
@@ -181,5 +198,7 @@ To register a service type, provide the human-readable name for the service, a t
 + Response 200
 
 ### Delete [DELETE]
++ Parameters
+    + serviceToken (required, string, `SILVERSTACK`)
 
 + Response 200
