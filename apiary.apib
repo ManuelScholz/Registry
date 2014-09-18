@@ -1,0 +1,185 @@
+FORMAT: 1A
+HOST: http://api.mscholz.com
+
+# ETC Cloud Framework Milk
+The following is a basic set of services to call the String metadata API.
+
+# Asset [/Asset]
+A single asset.
+
++ Model (application/json)
+
+        {
+            "description": "The parent owner of this asset and all of its derivatives is Pomfort.",
+            "serviceToken": "SILVERSTACK",
+            "URI": "http://127.0.0.1:8070/clips/006",
+            "assetHash": "eccbc87e4b5ce2fe28308fd9f2a7baf3",
+            "metadata": {
+                "Color-corrected": "False",
+                "Original": "True",
+                "Copyright": "2014 Pomfort"
+            }
+        }
+
+
+
+# AssetArray [/AssetArray]
+An array of assets.
+
++ Model  (application/json)   
+        
+        [
+            {
+                "description": "The parent owner of this asset and all of its derivatives is Pomfort.",
+                "serviceToken": "SILVERSTACK",
+                "URI": "http://127.0.0.1:8070/clips/006",
+                "assetHash": "eccbc87e4b5ce2fe28308fd9f2a7baf3",
+                "metadata": {
+                    "Color-corrected": "False",
+                    "Original": "True",
+                    "Copyright": "2014 Pomfort"
+                }
+            }
+        ]
+
+
+# Service [/Service]
+A single service.
+
++ Model (application/json)
+
+        {
+            "serviceName": "Ownership Information",
+            "serviceToken": "SILVERSTACK",
+            "serviceDescription": "
+                This service type provides ownership information about the asset. A non-
+                parameter call to the URI will provide more information on how to access this service.
+            "
+        }
+        
+# ServiceArray [/ServiceArray]
+An array of services.
+
++ Model (application/json)
+
+        [
+            {
+                "serviceName": "Ownership Information",
+                "serviceToken": "SILVERSTACK",
+                "serviceDescription": "
+                    This service type provides ownership information about the asset. A non-
+                    parameter call to the URI will provide more information on how to access this service.
+                "
+            }
+        ]
+
+# Group Assets and Services
+The primary registration method to associate an asset ID with a service type and
+a URI for more information. The call takes an optional description for this
+association to be retrieved as part of the lookup. In addition, publicly
+available metadata key-value pairs can be registered through the optional
+metadata structure, which is a JSON-encoded, square-bracketed, quoted list
+of data.
+
+`success = associate_asset(assetHash, serviceToken, URI, description, metadata)`
+
+
+
+
+|            assetHash             | serviceToken |               URI               |          description           |                       metadata                      |
+|----------------------------------|--------------|---------------------------------|--------------------------------|-----------------------------------------------------|
+| eccbc87e4b5ce2fe28308fd9f2a7baf3 | SILVERSTACK  | http://127.0.0.1:8070/clips/006 | The parent owner of this asset | [“Original”, “True”], [“Color-corrected”, “False”], |
+|                                  |              |                                 | and all of its derivatives is  | [“Copyright”, “2014 Pomfort”]                       |
+|                                  |              |                                 | Pomfort.                       |                                                     |
+
+## Assets and Services Collection [/AssetsServices]
+### List [GET]
+    
++ Response 200 (application/json)
+        [AssetArray][]
+
+### Create [POST]
+
++ Request
+        [Asset][]
+            
++ Response 200
+
+## Assets and Services Member [/AssetsServices/{assetHash}]
+
+### Read [GET]
+
++ Response 200 (application/json)
+        [AssetArray][]
+
+### Delete [DELETE]
+
++ Response 200
+
+## Assets and Services Member [/AssetsServices/{assetHash}/{serviceToken}]
+### Read [GET]
+
++ Response 200 (application/json)
+        [Asset][]
+
+
+### Update [PUT]
+
++ Request
+    
+        {
+            description: "Update description."
+        }
+
++ Response 200
+
+### Delete [DELETE]
+
++ Response 200
+
+
+# Group Service Registry
+To register a service type, provide the human-readable name for the service, a token value to identify the service, and a longer description.
+
+`success = register_service(serviceName, serviceToken, serviceDescription)`
+
+
+|      serviceName      | serviceToken |                serviceDescription                |
+|-----------------------|--------------|--------------------------------------------------|
+| Ownership Information | OWNER        | This service type provides ownership information |
+|                       |              | about the asset. A non-parameter call to the URI |
+|                       |              | will provide more information on how to access   |
+|                       |              | this service.                                    |
+
+## Service Registry Collection [/ServiceRegistry]
+### List [GET]
+
++ Response 200 (application/json)
+        [ServiceArray][]
+
+### Create [POST]   
+    
++ Request
+        [Service][]
+        
++ Response 200
+
+## Service Registry Member [/ServiceRegistry/{serviceToken}]
+### Read [GET]
+
++ Response 200 (application/json)
+        [Service][]
+
+### Update [PUT]
+
++ Request
+    
+            {
+                serviceName: "Update name."
+            }
+
++ Response 200
+
+### Delete [DELETE]
+
++ Response 200
