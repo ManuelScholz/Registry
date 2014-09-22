@@ -95,7 +95,7 @@ of data.
 ## Assets and Services Collection [/AssetsServices]
 ### List [GET]
     
-+ Response 200 (application/json)
++ Response 200
         [AssetArray][]
 
 ### Create [POST]
@@ -111,7 +111,7 @@ of data.
     + assetHash (required, string, `eccbc87e4b5ce2fe28308fd9f2a7baf3`)
 
 
-+ Response 200 (application/json)
++ Response 200
         [AssetArray][]
 
 ### Delete [DELETE]
@@ -126,7 +126,7 @@ of data.
     + assetHash (required, string, `eccbc87e4b5ce2fe28308fd9f2a7baf3`)
     + serviceToken (required, string, `SILVERSTACK`)
 
-+ Response 200 (application/json)
++ Response 200
         [Asset][]
 
 
@@ -167,7 +167,7 @@ To register a service type, provide the human-readable name for the service, a t
 ## Service Registry Collection [/ServiceRegistry]
 ### List [GET]
 
-+ Response 200 (application/json)
++ Response 200
         [ServiceArray][]
 
 ### Create [POST]   
@@ -182,7 +182,7 @@ To register a service type, provide the human-readable name for the service, a t
 + Parameters
     + serviceToken (required, string, `SILVERSTACK`)
 
-+ Response 200 (application/json)
++ Response 200
         [Service][]
 
 ### Update [PUT]
